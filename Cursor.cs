@@ -493,9 +493,6 @@ public class Cursor : MonoBehaviour{
 			SliderEqUs.value += 1;
 		}
 
-		// errores: de izquierda a derecha no se controla cuanto se puede bajar.
-
-
 		if (Input.GetKeyDown (KeyCode.W) && state == 6){
 			if(SliderObjects.gameObject.activeSelf){
 				SliderObjects.value -= 1;
