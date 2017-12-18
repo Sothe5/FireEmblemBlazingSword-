@@ -5,29 +5,29 @@ using UnityEngine;
 public class Map {
 
 	
-	public Spot [][] matrixScenary;
+	public Cell [][] matrixScenary;
 
-	public int Right;
-	public int Up;
+	public int width;
+	public int height;
 
 
 	void Start () {
 
-		matrixScenary = new Spot[Right+1][];
+		matrixScenary = new Cell[width+1][];
 
-		for(int i = 0; i <= Right; i++){
-			matrixScenary[i] = new Spot[Up+1];
-			for(int j = 0; j <= Up; j++){
-				matrixScenary[i][j] = gameObject.AddComponent<Spot>(); // == new Spot();
+		for(int i = 0; i <= width; i++){
+			matrixScenary[i] = new Cell[height+1];
+			for(int j = 0; j <= height; j++){
+				matrixScenary[i][j] = gameObject.AddComponent<Cell>(); // == new Cell();
 				matrixScenary[i][j].SetPoint(i,j); // dudoso
 				matrixScenary[i][j].setType(Types.Free);
 				matrixScenary[i][j].setPersonType(null);
 			}
 		}
 
-		for(int i = 0; i <= Right; i++){	// mejorar eficiencia
-			for(int j = 0; j <= Up; j++){
-				matrixScenary[i][j].addNeighbors(matrixScenary,Right,Up);
+		for(int i = 0; i <= width; i++){	// mejorar eficiencia
+			for(int j = 0; j <= height; j++){
+				matrixScenary[i][j].addNeighbors(matrixScenary,width,height);
 			}
 		}
 
@@ -54,7 +54,7 @@ public class Map {
 	}
 
 
-	private void RemoveFromArray (Spot[] myArray, Spot elem,int pos){ // quita de open set el spot prometedor		*****Plantear hacer quicksort y despues binary search
+	private void RemoveFromArray (Cell[] myArray, Cell elem,int pos){ // quita de open set el Cell prometedor		*****Plantear hacer quicksort y despues binary search
 
 		for(int i = pos-1; i >= 0; i--){ // por como esta definida deberia hacerlo de princi
 			if(myArray[i].equal(elem)){
@@ -66,7 +66,7 @@ public class Map {
 		} 
 	}
 
-	private bool isIncluded (Spot a, Spot[] list,int pos){
+	private bool isIncluded (Cell a, Cell[] list,int pos){
 
 		for(int i = 0; i < pos; i++){
 			if(list[i].equal(a)){
@@ -77,11 +77,11 @@ public class Map {
 		return false;
 	}
 
-	private int heuristic (Spot a, Spot b){
+	private int heuristic (Cell a, Cell b){
 		return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y -b.y);
 	}
 
-	private int distance (Ally myAllys,Spot start){
+	private int distance (Ally myAllys,Cell start){
 
 		int myAllyX = Mathf.FloorToInt(myAllys.transform.position.x);
 		int myAllyY = Mathf.FloorToInt(myAllys.transform.position.y);
@@ -89,7 +89,7 @@ public class Map {
 		return Mathf.Abs((myAllyX-start.x)+ (myAllyY - start.y));
 	}
 
-	private int distBetween (Spot a,Spot b){
+	private int distBetween (Cell a,Cell b){
 		// cambiar free de cursor a ocuppied con sus implicaciones
 		if(b.type == Types.Forest){
 		return 2;
@@ -99,26 +99,20 @@ public class Map {
 	}
 
 
-	public bool isPathFinding(int startX , int startY, int endX, int endY,Ally myAlly,Spot [] path,Spot posInPath){
+	public bool canReachCell(Cell start, Cell end, Cell [] path,Cell posInPath){
 		
+		Ally ally = (Ally)start.content;
+
 		int posInOpen = 0;
 		int posInClose = 0;
 
+		start.addNeighbors(matrixScenary,width,height);
+		end.addNeighbors(matrixScenary,width,height);
 
-		Spot start = gameObject.AddComponent<Spot>(); // start and end generated
-		Spot end = gameObject.AddComponent<Spot>();
-		start.SetPoint(startX,startY);
-		end.SetPoint(endX,endY);
-		start.setType(Types.Free);
-		end.setType(Types.Free);
-
-		start.addNeighbors(matrixScenary,Right,Up);
-		end.addNeighbors(matrixScenary,Right,Up);
-
-		Spot [] openSet;	//open and close set generated and initiallized
-		Spot [] closeSet;
-		openSet = new Spot[(Right+1)*(Up+1)];
-		closeSet = new Spot[(Right+1)*(Up+1)];
+		Cell [] openSet;	//open and close set generated and initiallized
+		Cell [] closeSet;
+		openSet = new Cell[(width+1)*(height+1)];
+		closeSet = new Cell[(width+1)*(height+1)];
 		openSet[posInOpen]  = start;
 		posInOpen++;
 		bool ok = false;
@@ -127,19 +121,19 @@ public class Map {
 
 			int prometedor = 0; // buscamos de la lista de los posibles neighbors cual es el que tiene una f mas baja
 			for(int i = 0; i < posInOpen; i++){ 
-				if(openSet[i].getF() < openSet[prometedor].getF() && distance(myAlly,openSet[i]) < myAlly.movement){ // la distancia entre inicio y prometedor es menor que myAlly.movement
+				if(openSet[i].expected < openSet[prometedor].expected && distance(myAlly,openSet[i]) < myAlly.movement){ // la distancia entre inicio y prometedor es menor que myAlly.movement
 					prometedor = i;
 
 				}
 			}
 
-			Spot current = openSet[prometedor];
-			if(current.equal(end)){ // si el prometedor es el final
+			Cell currentCell = openSet[prometedor];
+			if(currentCell.equal(end)){ // si el prometedor es el final
 
 				 // intentar reducirlo despues
 				
 
-				Spot temp = current;
+				Cell temp = currentCell;
 				path[posInPath.x] = temp;
 				posInPath.x++;
 
@@ -151,7 +145,7 @@ public class Map {
 				}
 
 				ok = true;
-				if(path[0].g > myAlly.movement){ // se deberia comparar la g con el movement de myAlly
+				if(path[0].currentCost > myAlly.movement){ // se deberia comparar la g con el movement de myAlly
 					Destroy(start);
 					Destroy(end);
 					return false;
@@ -161,41 +155,36 @@ public class Map {
 				return ok;
 			}
 
-			RemoveFromArray(openSet,current,posInOpen);
-			System.Array.Resize<Spot>(ref openSet,openSet.Length-1);
+			RemoveFromArray(openSet,currentCell,posInOpen);
+			System.Array.Resize<Cell>(ref openSet,openSet.Length-1);
 			posInOpen--;
-			closeSet[posInClose] = current; // añadimos a los visitados el nodo prometedor
+			closeSet[posInClose] = currentCell; // Add current cell to the visited ones
 			posInClose++;
 
 
-			Spot [] neighborsOfPrometedor = current.getNeighbors();
-
-			for(int i = 0; i < current.numNeigh; i++){
-				
-				if(!isIncluded(neighborsOfPrometedor[i], closeSet,posInClose) && neighborsOfPrometedor[i].type != Types.Ocupaid){ 
-					
-					int TempG = current.g + distBetween(current,neighborsOfPrometedor[i]); // lo que cuesta llegar al neighbor
+			foreach (Cell cell in currentCell.getNeighbors()) {	
+				if(!isIncluded(cell, closeSet, posInClose) && (cell.type != Types.Occupied)){ 
+					int costToNeighbour = currentCell.currentCost + distBetween(currentCell, cell); // Distance to neighbour
 					bool newPath = false;
-					if(isIncluded(neighborsOfPrometedor[i], openSet,posInOpen)){
-						if(TempG < neighborsOfPrometedor[i].g){
-							neighborsOfPrometedor[i].g = TempG;
+					if(isIncluded(cell, openSet,posInOpen)){
+						//Update 
+						if(costToNeighbour < cell.currentCost){
+							cell.currentCost = costToNeighbour;
 							newPath = true;
 						}
 					}else{
-						neighborsOfPrometedor[i].g = TempG;
+						cell.currentCost = costToNeighbour;
 						newPath = true;
-						openSet[posInOpen] = neighborsOfPrometedor[i];
+						openSet[posInOpen] = cell;
 						posInOpen++;
 					}
 					if(newPath){
-						neighborsOfPrometedor[i].h = heuristic(neighborsOfPrometedor[i],end);		// neighborsOfPrometedor[i] = neighbor
-						neighborsOfPrometedor[i].f = neighborsOfPrometedor[i].g +neighborsOfPrometedor[i].h;
-						neighborsOfPrometedor[i].previous = current;
+						cell.heuristicCost = heuristic(cell,end);		
+						cell.expectedCost = cell.currentCost +cell.heuristicCost;
+						cell.previousCell = currentCell;
 					}
 				}
 			}
-
-
 		}
 
 		Destroy(start);
