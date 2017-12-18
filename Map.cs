@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Map : MonoBehaviour {
+public class Map {
 
 	
 	public Spot [][] matrixScenary;
@@ -47,8 +47,8 @@ public class Map : MonoBehaviour {
 	}
 
 	public void EndTurn(){
-		Object[] objs = Allie.FindSceneObjectsOfType(typeof(Allie));
-		foreach (Allie a in objs){
+		Object[] objs = Ally.FindSceneObjectsOfType(typeof(Ally));
+		foreach (Ally a in objs){
 			a.setDisponibility(true);
 		}
 	}
@@ -81,12 +81,12 @@ public class Map : MonoBehaviour {
 		return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y -b.y);
 	}
 
-	private int distance (Allie myAllies,Spot start){
+	private int distance (Ally myAllys,Spot start){
 
-		int myAllieX = Mathf.FloorToInt(myAllies.transform.position.x);
-		int myAllieY = Mathf.FloorToInt(myAllies.transform.position.y);
+		int myAllyX = Mathf.FloorToInt(myAllys.transform.position.x);
+		int myAllyY = Mathf.FloorToInt(myAllys.transform.position.y);
 
-		return Mathf.Abs((myAllieX-start.x)+ (myAllieY - start.y));
+		return Mathf.Abs((myAllyX-start.x)+ (myAllyY - start.y));
 	}
 
 	private int distBetween (Spot a,Spot b){
@@ -99,7 +99,7 @@ public class Map : MonoBehaviour {
 	}
 
 
-	public bool isPathFinding(int startX , int startY, int endX, int endY,Allie myAllie,Spot [] path,Spot posInPath){
+	public bool isPathFinding(int startX , int startY, int endX, int endY,Ally myAlly,Spot [] path,Spot posInPath){
 		
 		int posInOpen = 0;
 		int posInClose = 0;
@@ -127,7 +127,7 @@ public class Map : MonoBehaviour {
 
 			int prometedor = 0; // buscamos de la lista de los posibles neighbors cual es el que tiene una f mas baja
 			for(int i = 0; i < posInOpen; i++){ 
-				if(openSet[i].getF() < openSet[prometedor].getF() && distance(myAllie,openSet[i]) < myAllie.movement){ // la distancia entre inicio y prometedor es menor que myallie.movement
+				if(openSet[i].getF() < openSet[prometedor].getF() && distance(myAlly,openSet[i]) < myAlly.movement){ // la distancia entre inicio y prometedor es menor que myAlly.movement
 					prometedor = i;
 
 				}
@@ -151,7 +151,7 @@ public class Map : MonoBehaviour {
 				}
 
 				ok = true;
-				if(path[0].g > myAllie.movement){ // se deberia comparar la g con el movement de myAllie
+				if(path[0].g > myAlly.movement){ // se deberia comparar la g con el movement de myAlly
 					Destroy(start);
 					Destroy(end);
 					return false;
