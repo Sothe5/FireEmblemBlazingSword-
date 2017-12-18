@@ -8,7 +8,7 @@ public class Cursor : MonoBehaviour{
 	private Map myMap;
 	private int cordX;
 	private int cordY;
-	private Allie myAllie;
+	private Ally myAlly;
 	private Inventory myInventory;
 	private Vector3 lastPos;
 	private Quaternion lastQuat;
@@ -19,7 +19,7 @@ public class Cursor : MonoBehaviour{
 	// mira si el contador es == al movimiento
 	private bool isOutOfArea;
 	// mira si estas fuera del area.
-	private Vector3 myAllieLastPos;
+	private Vector3 myAllyLastPos;
 	// mira la ultima posicion del aliado
 	private int state;
 	private bool isCellOcupaid;
@@ -106,7 +106,7 @@ public class Cursor : MonoBehaviour{
 	// state 2 = return has been press while a character is selected and options menu spawn.
 	// state 3 = Object menu is open
 	// state 4 = panelEqUs is open
-	// state 5 = choosing adjacent Allie/Enemy;
+	// state 5 = choosing adjacent Ally/Enemy;
 
 	// codigo para terminar el turnoß
 	//	myMap.EndTurn();
@@ -176,7 +176,7 @@ public class Cursor : MonoBehaviour{
 			Spot posInPath = gameObject.AddComponent<Spot> ();
 			posInPath.x = 0;
 		
-			if (!myMap.isPathFinding (Mathf.FloorToInt (myAllie.transform.position.x), Mathf.FloorToInt (myAllie.transform.position.y), cordX, cordY, myAllie, path, posInPath)){
+			if (!myMap.isPathFinding (Mathf.FloorToInt (myAlly.transform.position.x), Mathf.FloorToInt (myAlly.transform.position.y), cordX, cordY, myAlly, path, posInPath)){
 				isOutOfArea = true;
 				wasRecentlyOut = true;
 			} else{
@@ -198,7 +198,7 @@ public class Cursor : MonoBehaviour{
 
 		if (state == 5 && (Input.GetKeyDown (KeyCode.A))){
 			for (int i = 0; i < usefull.Count; i++){
-				if (myAllie.transform.position.x - 1 == usefull [i].x + 0.5f){
+				if (myAlly.transform.position.x - 1 == usefull [i].x + 0.5f){
 
 					transform.position = new Vector3 (usefull [i].x + 0.5f, usefull [i].y + 0.5f);
 					break;
@@ -206,14 +206,14 @@ public class Cursor : MonoBehaviour{
 			}
 		} else if (state == 5 && (Input.GetKeyDown (KeyCode.W))){
 			for (int i = 0; i < usefull.Count; i++){
-				if (myAllie.transform.position.y + 1 == usefull [i].y + 0.5f){
+				if (myAlly.transform.position.y + 1 == usefull [i].y + 0.5f){
 					transform.position = new Vector3 (usefull [i].x + 0.5f, usefull [i].y + 0.5f);
 					break;
 				}
 			}
 		} else if (state == 5 && (Input.GetKeyDown (KeyCode.D))){
 			for (int i = 0; i < usefull.Count; i++){
-				if (myAllie.transform.position.x + 1 == usefull [i].x + 0.5f){
+				if (myAlly.transform.position.x + 1 == usefull [i].x + 0.5f){
 
 					transform.position = new Vector3 (usefull [i].x + 0.5f, usefull [i].y + 0.5f);
 					break;
@@ -221,7 +221,7 @@ public class Cursor : MonoBehaviour{
 			}
 		} else if (state == 5 && (Input.GetKeyDown (KeyCode.S))){
 			for (int i = 0; i < usefull.Count; i++){
-				if (myAllie.transform.position.y - 1 == usefull [i].y + 0.5f){
+				if (myAlly.transform.position.y - 1 == usefull [i].y + 0.5f){
 					transform.position = new Vector3 (usefull [i].x + 0.5f, usefull [i].y + 0.5f);
 					break;
 				}
@@ -234,22 +234,22 @@ public class Cursor : MonoBehaviour{
 
 			} else if (myMap.GetValue (cordX, cordY) == Types.Enemy){
 			
-			} else if (myMap.GetValue (cordX, cordY) == Types.Allie){ 
+			} else if (myMap.GetValue (cordX, cordY) == Types.Ally){ 
 
 				Vector3 position = new Vector3 (cordX, cordY, 0);
-				Object[] objs = Allie.FindSceneObjectsOfType (typeof(Allie));
-				myAllie = null;
+				Object[] objs = Ally.FindSceneObjectsOfType (typeof(Ally));
+				myAlly = null;
    			
-				foreach (Allie go in objs){
+				foreach (Ally go in objs){
 					if (Mathf.FloorToInt (go.transform.position.x) == position.x && Mathf.FloorToInt (go.transform.position.y) == position.y){
-						myAllie = go;
+						myAlly = go;
 						break;
 					}
 				}
 
 				
-				if (myAllie.getDisponibility ()){
-					CampoDeVision (myAllie);
+				if (myAlly.getDisponibility ()){
+					CampoDeVision (myAlly);
 					lastPos = transform.position;
 					lastQuat = Quaternion.Euler (2, 2, 2);
 				} 
@@ -258,19 +258,19 @@ public class Cursor : MonoBehaviour{
 
 			// Se va a la posicion indicada y abre el menu cuando se pulsa en el estado 1.
 		} else if (Input.GetKeyDown (KeyCode.Return) && !isOutOfArea && state == 1){
-			bool posHasAllie = false;
-			Object[] objs = Allie.FindSceneObjectsOfType (typeof(Allie));
-			foreach (Allie go in objs){
-				if (transform.position == go.transform.position && go.GetComponent<Allie> () && go.ID != myAllie.ID){
-					posHasAllie = true;
+			bool posHasAlly = false;
+			Object[] objs = Ally.FindSceneObjectsOfType (typeof(Ally));
+			foreach (Ally go in objs){
+				if (transform.position == go.transform.position && go.GetComponent<Ally> () && go.ID != myAlly.ID){
+					posHasAlly = true;
 					break;
 				}
 			}
-			if (!posHasAllie){ 
-				myAllieLastPos = myAllie.transform.position;
+			if (!posHasAlly){ 
+				myAllyLastPos = myAlly.transform.position;
 
 
-				myAllie.transform.position = transform.position;
+				myAlly.transform.position = transform.position;
 
 
 				BorraTransLinea ();
@@ -295,9 +295,9 @@ public class Cursor : MonoBehaviour{
 				Debug.Log ("ATTACK");	
 			}
 			if (SliderOptions.value == 1){ // OBJECTS
-				if (myInventory.getAllieItems (myAllie.ID).Count > 0){
+				if (myInventory.getAllyItems (myAlly.ID).Count > 0){
 					state = 3;
-					Objects = myInventory.getAllieItems (myAllie.ID);
+					Objects = myInventory.getAllyItems (myAlly.ID);
 					panelOptions.SetActive (false);
 					panelObjects.SetActive (true);
 					panelValuesObject.SetActive (true);
@@ -313,7 +313,7 @@ public class Cursor : MonoBehaviour{
 				// elegir entre 4
 
 				foreach (Spot a in neighbors){
-					if (myMap.matrixScenary [a.x] [a.y].personType == Types.Allie){
+					if (myMap.matrixScenary [a.x] [a.y].personType == Types.Ally){
 						usefull.Add (a);
 					}
 				}
@@ -331,9 +331,9 @@ public class Cursor : MonoBehaviour{
 				BorraTransLinea ();
 				panelOptions.SetActive (false);
 				Time.timeScale = 1;
-				myAllie.setDisponibility (false);
-				myMap.SetValue (Mathf.FloorToInt (myAllieLastPos.x), Mathf.FloorToInt (myAllieLastPos.y), null);
-				myMap.SetValue (cordX, cordY, Types.Allie);
+				myAlly.setDisponibility (false);
+				myMap.SetValue (Mathf.FloorToInt (myAllyLastPos.x), Mathf.FloorToInt (myAllyLastPos.y), null);
+				myMap.SetValue (cordX, cordY, Types.Ally);
 			}
 		} else if (Input.GetKeyDown (KeyCode.Return) && state == 3){
 			panelEqUs.SetActive (true);
@@ -350,8 +350,8 @@ public class Cursor : MonoBehaviour{
 		} else if (Input.GetKeyDown (KeyCode.Return) && state == 4){
 
 			if (SliderEqUs.value == 0 && Equipar.activeSelf){ // equipar
-				myInventory.SwapItems (myAllie.ID, Mathf.FloorToInt (SliderObjects.value), 0);
-				Objects = myInventory.getAllieItems (myAllie.ID);
+				myInventory.SwapItems (myAlly.ID, Mathf.FloorToInt (SliderObjects.value), 0);
+				Objects = myInventory.getAllyItems (myAlly.ID);
 
 				Image1.sprite = Resources.Load<Sprite> (Objects [0].Image);
 				Name1.text = Objects [0].Name.ToString ();
@@ -382,10 +382,10 @@ public class Cursor : MonoBehaviour{
 			} else if (SliderEqUs.value == 0 && Usar.activeSelf){	//objeto dependiente del mismo.
 
 			} else if (SliderEqUs.value == 1){ // tirar;
-				if (myInventory.getAllieItems (myAllie.ID).Count > 1){
-					myInventory.RemoveItem (myAllie.ID, Mathf.FloorToInt (SliderObjects.value));
+				if (myInventory.getAllyItems (myAlly.ID).Count > 1){
+					myInventory.RemoveItem (myAlly.ID, Mathf.FloorToInt (SliderObjects.value));
 
-					Objects = myInventory.getAllieItems (myAllie.ID);
+					Objects = myInventory.getAllyItems (myAlly.ID);
 
 					ShowObjects ();
 
@@ -394,7 +394,7 @@ public class Cursor : MonoBehaviour{
 					SliderObjects.value = 0;
 					ShowObjectValues ();
 				} else{
-					myInventory.RemoveItem (myAllie.ID, Mathf.FloorToInt (SliderObjects.value));
+					myInventory.RemoveItem (myAlly.ID, Mathf.FloorToInt (SliderObjects.value));
 
 					panelEqUs.SetActive (false);
 					state = 2;
@@ -408,7 +408,7 @@ public class Cursor : MonoBehaviour{
 		} else if (Input.GetKeyDown (KeyCode.Return) && state == 5){
 			state = 6;
 			// en transform.position estara el aliado
-			Objects = myInventory.getAllieItems (myAllie.ID);
+			Objects = myInventory.getAllyItems (myAlly.ID);
 			panelOptions.SetActive (false);
 			panelObjects.SetActive (true);
 			SliderObjects.value = 0;
@@ -416,10 +416,10 @@ public class Cursor : MonoBehaviour{
 			SliderObjects2.gameObject.SetActive(false);
 			ShowObjects ();
 
-			Object[] objs = Allie.FindSceneObjectsOfType (typeof(Allie));
-			foreach (Allie go in objs){
+			Object[] objs = Ally.FindSceneObjectsOfType (typeof(Ally));
+			foreach (Ally go in objs){
 				if(go.transform.position == transform.position){
-					Objects2 = myInventory.getAllieItems (go.ID);
+					Objects2 = myInventory.getAllyItems (go.ID);
 					break;
 				}
 			}
@@ -438,12 +438,12 @@ public class Cursor : MonoBehaviour{
 			BorraTransLinea ();
 			counter = 0;
 			state = 0;
-			transform.position = myAllie.transform.position;
+			transform.position = myAlly.transform.position;
 		} else if (Input.GetKeyDown (KeyCode.RightShift) && state == 2){ // Vuelve a la situacion previa cuando se pulsa en el estado 2.
-			myAllie.transform.position = myAllieLastPos;
+			myAlly.transform.position = myAllyLastPos;
 			panelOptions.SetActive (false);
 			Time.timeScale = 1;
-			CampoDeVision (myAllie);
+			CampoDeVision (myAlly);
 			AutogeneraciondeCaminos (cordX, cordY);
 		} else if (Input.GetKeyDown (KeyCode.RightShift) && state == 3){
 			panelObjects.SetActive (false);
@@ -459,7 +459,7 @@ public class Cursor : MonoBehaviour{
 			state = 2;
 			panelOptions.SetActive(true);
 			SliderOptions.value = 0;
-			transform.position = myAllie.transform.position;
+			transform.position = myAlly.transform.position;
 		} else if (Input.GetKeyDown (KeyCode.RightShift) && state == 6){ // EHY
 
 			
@@ -759,40 +759,40 @@ public class Cursor : MonoBehaviour{
 	}
 
 	// Genera el campo en el que un aliado se puede mover. que genere solo hasta los limites del mapa y no mas.
-	private void CampoDeVision (Allie myAllie){
+	private void CampoDeVision (Ally myAlly){
 
 		state = 1;
-		int myAllieX = Mathf.FloorToInt (myAllie.transform.position.x);
-		int myAllieY = Mathf.FloorToInt (myAllie.transform.position.y);
+		int myAllyX = Mathf.FloorToInt (myAlly.transform.position.x);
+		int myAllyY = Mathf.FloorToInt (myAlly.transform.position.y);
 		Spot[] path = new Spot[(myMap.Right + 1) * (myMap.Up + 1)];
 		Spot posInPath = gameObject.AddComponent<Spot> ();
 
-		for (int i = 0; i <= myAllie.movement; i++){ // arriba derecha
-			for (int j = 0; j <= myAllie.movement - i; j++){
-				if (myAllieX + i > myMap.Right || myAllieY + j > myMap.Up){
+		for (int i = 0; i <= myAlly.movement; i++){ // arriba derecha
+			for (int j = 0; j <= myAlly.movement - i; j++){
+				if (myAllyX + i > myMap.Right || myAllyY + j > myMap.Up){
 					break;
 				}
 
-				if (myMap.GetValueScenary (myAllieX + i, myAllieY + j) != Types.Ocupaid){
+				if (myMap.GetValueScenary (myAllyX + i, myAllyY + j) != Types.Ocupaid){
 					posInPath.x = 0;
-					if (myMap.isPathFinding (myAllieX, myAllieY, myAllieX + i, myAllieY + j, myAllie, path, posInPath)){
-						Instantiate (BlueTransparency, new Vector3 (myAllieX + 0.5f + i, myAllieY + 0.5f + j, 0), Quaternion.identity);
+					if (myMap.isPathFinding (myAllyX, myAllyY, myAllyX + i, myAllyY + j, myAlly, path, posInPath)){
+						Instantiate (BlueTransparency, new Vector3 (myAllyX + 0.5f + i, myAllyY + 0.5f + j, 0), Quaternion.identity);
 
 					}
 				}
 			}
 		}
 
-		for (int i = 1; i <= myAllie.movement; i++){ // abjo derecha
-			for (int j = 1; j <= myAllie.movement - i; j++){
-				if (myAllieX + i > myMap.Right || myAllieY - j < 0){
+		for (int i = 1; i <= myAlly.movement; i++){ // abjo derecha
+			for (int j = 1; j <= myAlly.movement - i; j++){
+				if (myAllyX + i > myMap.Right || myAllyY - j < 0){
 					break;
 				}
 
-				if (myMap.GetValueScenary (myAllieX + i, myAllieY - j) != Types.Ocupaid){
+				if (myMap.GetValueScenary (myAllyX + i, myAllyY - j) != Types.Ocupaid){
 					posInPath.x = 0;
-					if (myMap.isPathFinding (myAllieX, myAllieY, myAllieX + i, myAllieY - j, myAllie, path, posInPath)){
-						Instantiate (BlueTransparency, new Vector3 (myAllieX + 0.5f + i, myAllieY + 0.5f - j, 0), Quaternion.identity);
+					if (myMap.isPathFinding (myAllyX, myAllyY, myAllyX + i, myAllyY - j, myAlly, path, posInPath)){
+						Instantiate (BlueTransparency, new Vector3 (myAllyX + 0.5f + i, myAllyY + 0.5f - j, 0), Quaternion.identity);
 					}
 
 
@@ -801,17 +801,17 @@ public class Cursor : MonoBehaviour{
 			}
 		}
 
-		for (int i = 1; i <= myAllie.movement; i++){ // arriba izquierda
-			for (int j = 1; j <= myAllie.movement - i; j++){
+		for (int i = 1; i <= myAlly.movement; i++){ // arriba izquierda
+			for (int j = 1; j <= myAlly.movement - i; j++){
 
-				if (myAllieX - i < 0 || myAllieY + j > myMap.Up){
+				if (myAllyX - i < 0 || myAllyY + j > myMap.Up){
 
 					break;
 				}
-				if (myMap.GetValueScenary (myAllieX - i, myAllieY + j) != Types.Ocupaid){
+				if (myMap.GetValueScenary (myAllyX - i, myAllyY + j) != Types.Ocupaid){
 					posInPath.x = 0;
-					if (myMap.isPathFinding (myAllieX, myAllieY, myAllieX - i, myAllieY + j, myAllie, path, posInPath)){
-						Instantiate (BlueTransparency, new Vector3 (myAllieX + 0.5f - i, myAllieY + 0.5f + j, 0), Quaternion.identity);
+					if (myMap.isPathFinding (myAllyX, myAllyY, myAllyX - i, myAllyY + j, myAlly, path, posInPath)){
+						Instantiate (BlueTransparency, new Vector3 (myAllyX + 0.5f - i, myAllyY + 0.5f + j, 0), Quaternion.identity);
 					}
 
 				
@@ -819,17 +819,17 @@ public class Cursor : MonoBehaviour{
 			}
 		}
 
-		for (int i = 0; i <= myAllie.movement; i++){ // abajo izquierda
-			for (int j = 0; j <= myAllie.movement - i; j++){
-				if (myAllieX - i < 0 || myAllieY - j < 0){
+		for (int i = 0; i <= myAlly.movement; i++){ // abajo izquierda
+			for (int j = 0; j <= myAlly.movement - i; j++){
+				if (myAllyX - i < 0 || myAllyY - j < 0){
 					break;
 				}
 
 				if (i != 0 || j != 0){
-					if (myMap.GetValueScenary (myAllieX - i, myAllieY - j) != Types.Ocupaid){
+					if (myMap.GetValueScenary (myAllyX - i, myAllyY - j) != Types.Ocupaid){
 						posInPath.x = 0;
-						if (myMap.isPathFinding (myAllieX, myAllieY, myAllieX - i, myAllieY - j, myAllie, path, posInPath)){
-							Instantiate (BlueTransparency, new Vector3 (myAllieX + 0.5f - i, myAllieY + 0.5f - j, 0), Quaternion.identity);
+						if (myMap.isPathFinding (myAllyX, myAllyY, myAllyX - i, myAllyY - j, myAlly, path, posInPath)){
+							Instantiate (BlueTransparency, new Vector3 (myAllyX + 0.5f - i, myAllyY + 0.5f - j, 0), Quaternion.identity);
 						}
 
 					
@@ -842,13 +842,13 @@ public class Cursor : MonoBehaviour{
 		// RED TRANSPARENCIES	// cuando haga que la matriz soporte las transparencias quitar el foreach y acceder directo
 								// el ispathFinding lo podrias sustituir por si hay una blue transparency alli o no en O(1)!!!
 
-		for (int i = 0; i <= myAllie.movement; i++){ // arriba derecha
-			for (int j = 0; j <= myAllie.movement - i; j++){
-				if (myAllieX + i > myMap.Right || myAllieY + j > myMap.Up){
+		for (int i = 0; i <= myAlly.movement; i++){ // arriba derecha
+			for (int j = 0; j <= myAlly.movement - i; j++){
+				if (myAllyX + i > myMap.Right || myAllyY + j > myMap.Up){
 					break;
 				}
 				posInPath.x = 0;
-				if (myMap.isPathFinding (myAllieX, myAllieY, myAllieX + i, myAllieY + j, myAllie, path, posInPath)){
+				if (myMap.isPathFinding (myAllyX, myAllyY, myAllyX + i, myAllyY + j, myAlly, path, posInPath)){
 					// mira neighbors si tienen tranparency si no pone la roja
 					Object[] objs = Transparency.FindSceneObjectsOfType (typeof(Transparency));
 					bool isTransparency1 = false;
@@ -856,16 +856,16 @@ public class Cursor : MonoBehaviour{
 					bool isTransparency3 = false;
 					bool isTransparency4 = false;
 					foreach (Transparency g in objs){
-						if (g.transform.position.x == myAllieX + i + 1 + 0.5f && g.transform.position.y == myAllieY + j + 0.5f){
+						if (g.transform.position.x == myAllyX + i + 1 + 0.5f && g.transform.position.y == myAllyY + j + 0.5f){
 							isTransparency1 = true;
 						}
-						if (g.transform.position.x == myAllieX + i - 1 + 0.5f && g.transform.position.y == myAllieY + j + 0.5f){
+						if (g.transform.position.x == myAllyX + i - 1 + 0.5f && g.transform.position.y == myAllyY + j + 0.5f){
 							isTransparency2 = true;
 						}
-						if (g.transform.position.x == myAllieX + i + 0.5f && g.transform.position.y == myAllieY + j + 1 + 0.5f){
+						if (g.transform.position.x == myAllyX + i + 0.5f && g.transform.position.y == myAllyY + j + 1 + 0.5f){
 							isTransparency3 = true;
 						}
-						if (g.transform.position.x == myAllieX + i + 0.5f && g.transform.position.y == myAllieY + j - 1 + 0.5f){
+						if (g.transform.position.x == myAllyX + i + 0.5f && g.transform.position.y == myAllyY + j - 1 + 0.5f){
 							isTransparency4 = true;
 						}
 						if (isTransparency1 && isTransparency2 && isTransparency3 && isTransparency4){
@@ -874,16 +874,16 @@ public class Cursor : MonoBehaviour{
 					}
 
 					if (!isTransparency1){
-						Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f + i + 1, myAllieY + 0.5f + j, 0), Quaternion.identity);
+						Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f + i + 1, myAllyY + 0.5f + j, 0), Quaternion.identity);
 					}
 					if (!isTransparency2){
-						Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f + i - 1, myAllieY + 0.5f + j, 0), Quaternion.identity);
+						Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f + i - 1, myAllyY + 0.5f + j, 0), Quaternion.identity);
 					}
 					if (!isTransparency3){
-						Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f + i, myAllieY + 0.5f + j + 1, 0), Quaternion.identity);
+						Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f + i, myAllyY + 0.5f + j + 1, 0), Quaternion.identity);
 					}
 					if (!isTransparency4){
-						Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f + i, myAllieY + 0.5f + j - 1, 0), Quaternion.identity);
+						Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f + i, myAllyY + 0.5f + j - 1, 0), Quaternion.identity);
 					}
 				}
 			}
@@ -891,13 +891,13 @@ public class Cursor : MonoBehaviour{
 
 
 
-		for (int i = 1; i <= myAllie.movement; i++){ // abjo derecha
-			for (int j = 1; j <= myAllie.movement - i; j++){
-				if (myAllieX + i > myMap.Right || myAllieY - j < 0){
+		for (int i = 1; i <= myAlly.movement; i++){ // abjo derecha
+			for (int j = 1; j <= myAlly.movement - i; j++){
+				if (myAllyX + i > myMap.Right || myAllyY - j < 0){
 					break;
 				}
 				posInPath.x = 0;
-				if (myMap.isPathFinding (myAllieX, myAllieY, myAllieX + i, myAllieY - j, myAllie, path, posInPath)){
+				if (myMap.isPathFinding (myAllyX, myAllyY, myAllyX + i, myAllyY - j, myAlly, path, posInPath)){
 					// mira neighbors si tienen tranparency si no pone la roja
 					Object[] objs = Transparency.FindSceneObjectsOfType (typeof(Transparency));
 					bool isTransparency1 = false;
@@ -905,16 +905,16 @@ public class Cursor : MonoBehaviour{
 					bool isTransparency3 = false;
 					bool isTransparency4 = false;
 					foreach (Transparency g in objs){
-						if (g.transform.position.x == myAllieX + i + 1 + 0.5f && g.transform.position.y == myAllieY - j + 0.5f){
+						if (g.transform.position.x == myAllyX + i + 1 + 0.5f && g.transform.position.y == myAllyY - j + 0.5f){
 							isTransparency1 = true;
 						}
-						if (g.transform.position.x == myAllieX + i - 1 + 0.5f && g.transform.position.y == myAllieY - j + 0.5f){
+						if (g.transform.position.x == myAllyX + i - 1 + 0.5f && g.transform.position.y == myAllyY - j + 0.5f){
 							isTransparency2 = true;
 						}
-						if (g.transform.position.x == myAllieX + i + 0.5f && g.transform.position.y == myAllieY - j + 1 + 0.5f){
+						if (g.transform.position.x == myAllyX + i + 0.5f && g.transform.position.y == myAllyY - j + 1 + 0.5f){
 							isTransparency3 = true;
 						}
-						if (g.transform.position.x == myAllieX + i + 0.5f && g.transform.position.y == myAllieY - j - 1 + 0.5f){
+						if (g.transform.position.x == myAllyX + i + 0.5f && g.transform.position.y == myAllyY - j - 1 + 0.5f){
 							isTransparency4 = true;
 						}
 						if (isTransparency1 && isTransparency2 && isTransparency3 && isTransparency4){
@@ -923,16 +923,16 @@ public class Cursor : MonoBehaviour{
 					}
 
 					if (!isTransparency1){
-						Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f + i + 1, myAllieY + 0.5f - j, 0), Quaternion.identity);
+						Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f + i + 1, myAllyY + 0.5f - j, 0), Quaternion.identity);
 					}
 					if (!isTransparency2){
-						Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f + i - 1, myAllieY + 0.5f - j, 0), Quaternion.identity);
+						Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f + i - 1, myAllyY + 0.5f - j, 0), Quaternion.identity);
 					}
 					if (!isTransparency3){
-						Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f + i, myAllieY + 0.5f - j + 1, 0), Quaternion.identity);
+						Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f + i, myAllyY + 0.5f - j + 1, 0), Quaternion.identity);
 					}
 					if (!isTransparency4){
-						Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f + i, myAllieY + 0.5f - j - 1, 0), Quaternion.identity);
+						Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f + i, myAllyY + 0.5f - j - 1, 0), Quaternion.identity);
 					}
 				}
 			}
@@ -940,16 +940,16 @@ public class Cursor : MonoBehaviour{
 
 
 
-		for (int i = 1; i <= myAllie.movement; i++){ // arriba izquierda
-			for (int j = 1; j <= myAllie.movement - i; j++){
+		for (int i = 1; i <= myAlly.movement; i++){ // arriba izquierda
+			for (int j = 1; j <= myAlly.movement - i; j++){
 
-				if (myAllieX - i < 0 || myAllieY + j > myMap.Up){
+				if (myAllyX - i < 0 || myAllyY + j > myMap.Up){
 
 					break;
 				}
 
 				posInPath.x = 0;
-				if (myMap.isPathFinding (myAllieX, myAllieY, myAllieX - i, myAllieY + j, myAllie, path, posInPath)){
+				if (myMap.isPathFinding (myAllyX, myAllyY, myAllyX - i, myAllyY + j, myAlly, path, posInPath)){
 					// mira neighbors si tienen tranparency si no pone la roja
 					Object[] objs = Transparency.FindSceneObjectsOfType (typeof(Transparency));
 					bool isTransparency1 = false;
@@ -957,16 +957,16 @@ public class Cursor : MonoBehaviour{
 					bool isTransparency3 = false;
 					bool isTransparency4 = false;
 					foreach (Transparency g in objs){
-						if (g.transform.position.x == myAllieX - i + 1 + 0.5f && g.transform.position.y == myAllieY + j + 0.5f){
+						if (g.transform.position.x == myAllyX - i + 1 + 0.5f && g.transform.position.y == myAllyY + j + 0.5f){
 							isTransparency1 = true;
 						}
-						if (g.transform.position.x == myAllieX - i - 1 + 0.5f && g.transform.position.y == myAllieY + j + 0.5f){
+						if (g.transform.position.x == myAllyX - i - 1 + 0.5f && g.transform.position.y == myAllyY + j + 0.5f){
 							isTransparency2 = true;
 						}
-						if (g.transform.position.x == myAllieX - i + 0.5f && g.transform.position.y == myAllieY + j + 1 + 0.5f){
+						if (g.transform.position.x == myAllyX - i + 0.5f && g.transform.position.y == myAllyY + j + 1 + 0.5f){
 							isTransparency3 = true;
 						}
-						if (g.transform.position.x == myAllieX - i + 0.5f && g.transform.position.y == myAllieY + j - 1 + 0.5f){
+						if (g.transform.position.x == myAllyX - i + 0.5f && g.transform.position.y == myAllyY + j - 1 + 0.5f){
 							isTransparency4 = true;
 						}
 						if (isTransparency1 && isTransparency2 && isTransparency3 && isTransparency4){
@@ -975,16 +975,16 @@ public class Cursor : MonoBehaviour{
 					}
 
 					if (!isTransparency1){
-						Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f - i + 1, myAllieY + 0.5f + j, 0), Quaternion.identity);
+						Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f - i + 1, myAllyY + 0.5f + j, 0), Quaternion.identity);
 					}
 					if (!isTransparency2){
-						Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f - i - 1, myAllieY + 0.5f + j, 0), Quaternion.identity);
+						Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f - i - 1, myAllyY + 0.5f + j, 0), Quaternion.identity);
 					}
 					if (!isTransparency3){
-						Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f - i, myAllieY + 0.5f + j + 1, 0), Quaternion.identity);
+						Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f - i, myAllyY + 0.5f + j + 1, 0), Quaternion.identity);
 					}
 					if (!isTransparency4){
-						Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f - i, myAllieY + 0.5f + j - 1, 0), Quaternion.identity);
+						Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f - i, myAllyY + 0.5f + j - 1, 0), Quaternion.identity);
 					}
 				}
 			}
@@ -994,15 +994,15 @@ public class Cursor : MonoBehaviour{
 
 
 
-		for (int i = 0; i <= myAllie.movement; i++){ // abajo izquierda
-			for (int j = 0; j <= myAllie.movement - i; j++){
-				if (myAllieX - i < 0 || myAllieY - j < 0){
+		for (int i = 0; i <= myAlly.movement; i++){ // abajo izquierda
+			for (int j = 0; j <= myAlly.movement - i; j++){
+				if (myAllyX - i < 0 || myAllyY - j < 0){
 					break;
 				}
 
 				if (i != 0 || j != 0){
 					posInPath.x = 0;
-					if (myMap.isPathFinding (myAllieX, myAllieY, myAllieX - i, myAllieY - j, myAllie, path, posInPath)){
+					if (myMap.isPathFinding (myAllyX, myAllyY, myAllyX - i, myAllyY - j, myAlly, path, posInPath)){
 						// mira neighbors si tienen tranparency si no pone la roja
 						Object[] objs = Transparency.FindSceneObjectsOfType (typeof(Transparency));
 						bool isTransparency1 = false;
@@ -1010,16 +1010,16 @@ public class Cursor : MonoBehaviour{
 						bool isTransparency3 = false;
 						bool isTransparency4 = false;
 						foreach (Transparency g in objs){
-							if (g.transform.position.x == myAllieX - i + 1 + 0.5f && g.transform.position.y == myAllieY - j + 0.5f){
+							if (g.transform.position.x == myAllyX - i + 1 + 0.5f && g.transform.position.y == myAllyY - j + 0.5f){
 								isTransparency1 = true;
 							}
-							if (g.transform.position.x == myAllieX - i - 1 + 0.5f && g.transform.position.y == myAllieY - j + 0.5f){
+							if (g.transform.position.x == myAllyX - i - 1 + 0.5f && g.transform.position.y == myAllyY - j + 0.5f){
 								isTransparency2 = true;
 							}
-							if (g.transform.position.x == myAllieX - i + 0.5f && g.transform.position.y == myAllieY - j + 1 + 0.5f){
+							if (g.transform.position.x == myAllyX - i + 0.5f && g.transform.position.y == myAllyY - j + 1 + 0.5f){
 								isTransparency3 = true;
 							}
-							if (g.transform.position.x == myAllieX - i + 0.5f && g.transform.position.y == myAllieY - j - 1 + 0.5f){
+							if (g.transform.position.x == myAllyX - i + 0.5f && g.transform.position.y == myAllyY - j - 1 + 0.5f){
 								isTransparency4 = true;
 							}
 							if (isTransparency1 && isTransparency2 && isTransparency3 && isTransparency4){
@@ -1028,16 +1028,16 @@ public class Cursor : MonoBehaviour{
 						}
 
 						if (!isTransparency1){
-							Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f - i + 1, myAllieY + 0.5f - j, 0), Quaternion.identity);
+							Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f - i + 1, myAllyY + 0.5f - j, 0), Quaternion.identity);
 						}
 						if (!isTransparency2){
-							Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f - i - 1, myAllieY + 0.5f - j, 0), Quaternion.identity);
+							Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f - i - 1, myAllyY + 0.5f - j, 0), Quaternion.identity);
 						}
 						if (!isTransparency3){
-							Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f - i, myAllieY + 0.5f - j + 1, 0), Quaternion.identity);
+							Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f - i, myAllyY + 0.5f - j + 1, 0), Quaternion.identity);
 						}
 						if (!isTransparency4){
-							Instantiate (RedTransparency, new Vector3 (myAllieX + 0.5f - i, myAllieY + 0.5f - j - 1, 0), Quaternion.identity);
+							Instantiate (RedTransparency, new Vector3 (myAllyX + 0.5f - i, myAllyY + 0.5f - j - 1, 0), Quaternion.identity);
 						}
 					}
 				}
@@ -1063,17 +1063,17 @@ public class Cursor : MonoBehaviour{
 			}
 		}
 
-		if (lastQuat == Quaternion.Euler (0, 0, 90) && lastPos != myAllie.transform.position){			
+		if (lastQuat == Quaternion.Euler (0, 0, 90) && lastPos != myAlly.transform.position){			
 			Instantiate (Line, lastPos, Quaternion.Euler (0, 0, 90));	
 		} else{
 			bool wasSomethingPut = false;
 			Object[] objssss = Lines.FindSceneObjectsOfType (typeof(Lines));
 			foreach (Lines g in objssss){
-				if (g.transform.position.x == myTransform.position.x + 1 && g.transform.position.y == myTransform.position.y + 1 && lastPos != myAllie.transform.position){
+				if (g.transform.position.x == myTransform.position.x + 1 && g.transform.position.y == myTransform.position.y + 1 && lastPos != myAlly.transform.position){
 					Instantiate (IzArr, lastPos, Quaternion.Euler (0, 0, 0));
 					wasSomethingPut = true;
 					break;
-				} else if (g.transform.position.x == myTransform.position.x + 1 && g.transform.position.y == myTransform.position.y - 1 && lastPos != myAllie.transform.position){
+				} else if (g.transform.position.x == myTransform.position.x + 1 && g.transform.position.y == myTransform.position.y - 1 && lastPos != myAlly.transform.position){
 					Instantiate (IzAba, lastPos, Quaternion.Euler (0, 0, 0));
 					wasSomethingPut = true;
 					break;
@@ -1100,17 +1100,17 @@ public class Cursor : MonoBehaviour{
 			}
 		}
 
-		if (lastQuat == Quaternion.Euler (0, 0, 0) && lastPos != myAllie.transform.position){
+		if (lastQuat == Quaternion.Euler (0, 0, 0) && lastPos != myAlly.transform.position){
 			Instantiate (Line, lastPos, Quaternion.Euler (0, 0, 0));	
 		} else{
 			bool wasSomethingPut = false;
 			Object[] objssss = Lines.FindSceneObjectsOfType (typeof(Lines));
 			foreach (Lines g in objssss){
-				if (g.transform.position.x == myTransform.position.x - 1 && g.transform.position.y == myTransform.position.y - 1 && lastPos != myAllie.transform.position){
+				if (g.transform.position.x == myTransform.position.x - 1 && g.transform.position.y == myTransform.position.y - 1 && lastPos != myAlly.transform.position){
 					Instantiate (IzArr, lastPos, Quaternion.Euler (0, 0, 0));
 					wasSomethingPut = true;
 					break;
-				} else if (g.transform.position.x == myTransform.position.x + 1 && g.transform.position.y == myTransform.position.y - 1 && lastPos != myAllie.transform.position){
+				} else if (g.transform.position.x == myTransform.position.x + 1 && g.transform.position.y == myTransform.position.y - 1 && lastPos != myAlly.transform.position){
 					Instantiate (DerArr, lastPos, Quaternion.Euler (0, 0, 0));
 					wasSomethingPut = true;
 					break;	
@@ -1139,17 +1139,17 @@ public class Cursor : MonoBehaviour{
 			}
 		}
 
-		if (lastQuat == Quaternion.Euler (0, 0, 90) && lastPos != myAllie.transform.position){
+		if (lastQuat == Quaternion.Euler (0, 0, 90) && lastPos != myAlly.transform.position){
 			Instantiate (Line, lastPos, Quaternion.Euler (0, 0, 90));	
 		} else{
 			bool wasSomethingPut = false;
 			Object[] objssss = Lines.FindSceneObjectsOfType (typeof(Lines));
 			foreach (Lines g in objssss){
-				if (g.transform.position.x == myTransform.position.x - 1 && g.transform.position.y == myTransform.position.y + 1 && lastPos != myAllie.transform.position){
+				if (g.transform.position.x == myTransform.position.x - 1 && g.transform.position.y == myTransform.position.y + 1 && lastPos != myAlly.transform.position){
 					Instantiate (DerArr, lastPos, Quaternion.Euler (0, 0, 0));
 					wasSomethingPut = true;
 					break;
-				} else if (g.transform.position.x == myTransform.position.x - 1 && g.transform.position.y == myTransform.position.y - 1 && lastPos != myAllie.transform.position){
+				} else if (g.transform.position.x == myTransform.position.x - 1 && g.transform.position.y == myTransform.position.y - 1 && lastPos != myAlly.transform.position){
 					Instantiate (DerAba, lastPos, Quaternion.Euler (0, 0, 0));	
 					wasSomethingPut = true;
 					break;
@@ -1178,17 +1178,17 @@ public class Cursor : MonoBehaviour{
 			}
 		}
 
-		if (lastQuat == Quaternion.Euler (0, 0, 0) && lastPos != myAllie.transform.position){
+		if (lastQuat == Quaternion.Euler (0, 0, 0) && lastPos != myAlly.transform.position){
 			Instantiate (Line, lastPos, Quaternion.Euler (0, 0, 0));	
 		} else{
 			bool wasSomethingPut = false;
 			Object[] objssss = Lines.FindSceneObjectsOfType (typeof(Lines));
 			foreach (Lines g in objssss){
-				if (g.transform.position.x == myTransform.position.x - 1 && g.transform.position.y == myTransform.position.y + 1 && lastPos != myAllie.transform.position){
+				if (g.transform.position.x == myTransform.position.x - 1 && g.transform.position.y == myTransform.position.y + 1 && lastPos != myAlly.transform.position){
 					Instantiate (IzAba, lastPos, Quaternion.Euler (0, 0, 0));
 					wasSomethingPut = true;
 					break;
-				} else if (g.transform.position.x == myTransform.position.x + 1 && g.transform.position.y == myTransform.position.y + 1 && lastPos != myAllie.transform.position){
+				} else if (g.transform.position.x == myTransform.position.x + 1 && g.transform.position.y == myTransform.position.y + 1 && lastPos != myAlly.transform.position){
 					Instantiate (DerAba, lastPos, Quaternion.Euler (0, 0, 0));	
 					wasSomethingPut = true;
 					break;
@@ -1209,8 +1209,8 @@ public class Cursor : MonoBehaviour{
 	// Genera un camino desde la posicion actual hasta las coordenadas indicadas.
 	private void AutogeneraciondeCaminos (int Xcord, int Ycord){
 		
-		int myAllieX = Mathf.FloorToInt (myAllie.transform.position.x);
-		int myAllieY = Mathf.FloorToInt (myAllie.transform.position.y);
+		int myAllyX = Mathf.FloorToInt (myAlly.transform.position.x);
+		int myAllyY = Mathf.FloorToInt (myAlly.transform.position.y);
 		Spot[] path = new Spot[(myMap.Right + 1) * (myMap.Up + 1)];
 		Spot posInPath = gameObject.AddComponent<Spot> ();
 		posInPath.x = 0;
@@ -1219,7 +1219,7 @@ public class Cursor : MonoBehaviour{
 
 
 
-		if (myMap.isPathFinding (myAllieX, myAllieY, Xcord, Ycord, myAllie, path, posInPath)){ // si existe un path updatea las variables
+		if (myMap.isPathFinding (myAllyX, myAllyY, Xcord, Ycord, myAlly, path, posInPath)){ // si existe un path updatea las variables
 
 			Object[] objs = Lines.FindSceneObjectsOfType (typeof(Lines));
 			foreach (Lines g in objs){
@@ -1227,9 +1227,9 @@ public class Cursor : MonoBehaviour{
 			}
 
 			counter = 0;
-			lastPos = myAllie.transform.position;
+			lastPos = myAlly.transform.position;
 			lastQuat = Quaternion.Euler (2, 2, 2);
-			auxCursor.transform.position = myAllie.transform.position;
+			auxCursor.transform.position = myAlly.transform.position;
 
 			System.Array.Resize (ref path, posInPath.x); // dejas solo lo importante del path
 			System.Array.Reverse (path); // le das la vuelta ya que antes estaba de final -> principio
@@ -1319,29 +1319,29 @@ public class Cursor : MonoBehaviour{
 				}
 			}
 
-//			if(counter >= myAllie.movement){
+//			if(counter >= myAlly.movement){
 //				isCountPlus1 = true;
 //			}else{
 //				isCountPlus1 = false;
 //			}
 
-			if (counter <= myAllie.movement && !isRectifying){	// mira que tiene que poner en la anterior posicion.
+			if (counter <= myAlly.movement && !isRectifying){	// mira que tiene que poner en la anterior posicion.
 				counter++;
 				if (myMap.matrixScenary [cordX] [cordY].type == Types.Forest){
 					counter++;
 				}
 
-				if (lastQuat == Quaternion.Euler (0, 0, 90) && lastPos != myAllie.transform.position){			
+				if (lastQuat == Quaternion.Euler (0, 0, 90) && lastPos != myAlly.transform.position){			
 					Instantiate (Line, lastPos, Quaternion.Euler (0, 0, 90));	
 				} else{
 					bool wasSomethingPut = false;
 					Object[] objssss = Lines.FindSceneObjectsOfType (typeof(Lines));
 					foreach (Lines g in objssss){
-						if (g.transform.position.x == transform.position.x + 1 && g.transform.position.y == transform.position.y + 1 && lastPos != myAllie.transform.position){
+						if (g.transform.position.x == transform.position.x + 1 && g.transform.position.y == transform.position.y + 1 && lastPos != myAlly.transform.position){
 							Instantiate (IzArr, lastPos, Quaternion.Euler (0, 0, 0));
 							wasSomethingPut = true;
 							break;
-						} else if (g.transform.position.x == transform.position.x + 1 && g.transform.position.y == transform.position.y - 1 && lastPos != myAllie.transform.position){
+						} else if (g.transform.position.x == transform.position.x + 1 && g.transform.position.y == transform.position.y - 1 && lastPos != myAlly.transform.position){
 							Instantiate (IzAba, lastPos, Quaternion.Euler (0, 0, 0));
 							wasSomethingPut = true;
 							break;
@@ -1358,13 +1358,13 @@ public class Cursor : MonoBehaviour{
 				lastQuat = Quaternion.Euler (0, 0, 90);
 			}
 
-			if (counter > myAllie.movement){ // es 5 
+			if (counter > myAlly.movement){ // es 5 
 				isCountPlus1 = true;
 			} else{
 				isCountPlus1 = false;
 			}
 
-			if ((transform.position == myAllie.transform.position || isCountPlus1 || wasRecentlyOut)){
+			if ((transform.position == myAlly.transform.position || isCountPlus1 || wasRecentlyOut)){
 				AutogeneraciondeCaminos (cordX, cordY);
 				wasRecentlyOut = false;
 			}
@@ -1427,22 +1427,22 @@ public class Cursor : MonoBehaviour{
 			}
 
 
-			if (counter <= myAllie.movement && !isRectifying){
+			if (counter <= myAlly.movement && !isRectifying){
 				counter++;
 				if (myMap.matrixScenary [cordX] [cordY].type == Types.Forest){
 					counter++;
 				}
-				if (lastQuat == Quaternion.Euler (0, 0, 0) && lastPos != myAllie.transform.position){
+				if (lastQuat == Quaternion.Euler (0, 0, 0) && lastPos != myAlly.transform.position){
 					Instantiate (Line, lastPos, Quaternion.Euler (0, 0, 0));	
 				} else{
 					bool wasSomethingPut = false;
 					Object[] objssss = Lines.FindSceneObjectsOfType (typeof(Lines));
 					foreach (Lines g in objssss){
-						if (g.transform.position.x == transform.position.x - 1 && g.transform.position.y == transform.position.y - 1 && lastPos != myAllie.transform.position){
+						if (g.transform.position.x == transform.position.x - 1 && g.transform.position.y == transform.position.y - 1 && lastPos != myAlly.transform.position){
 							Instantiate (IzArr, lastPos, Quaternion.Euler (0, 0, 0));
 							wasSomethingPut = true;
 							break;
-						} else if (g.transform.position.x == transform.position.x + 1 && g.transform.position.y == transform.position.y - 1 && lastPos != myAllie.transform.position){
+						} else if (g.transform.position.x == transform.position.x + 1 && g.transform.position.y == transform.position.y - 1 && lastPos != myAlly.transform.position){
 							Instantiate (DerArr, lastPos, Quaternion.Euler (0, 0, 0));
 							wasSomethingPut = true;
 							break;	
@@ -1458,12 +1458,12 @@ public class Cursor : MonoBehaviour{
 				lastQuat = Quaternion.Euler (0, 0, 0);
 			}
 
-			if (counter > myAllie.movement){
+			if (counter > myAlly.movement){
 				isCountPlus1 = true;
 			} else{
 				isCountPlus1 = false;
 			}
-			if (transform.position == myAllie.transform.position || isCountPlus1 || wasRecentlyOut){
+			if (transform.position == myAlly.transform.position || isCountPlus1 || wasRecentlyOut){
 				AutogeneraciondeCaminos (cordX, cordY);
 				wasRecentlyOut = false;
 			}
@@ -1523,22 +1523,22 @@ public class Cursor : MonoBehaviour{
 
 
 
-			if (counter <= myAllie.movement && !isRectifying){
+			if (counter <= myAlly.movement && !isRectifying){
 				counter++;
 				if (myMap.matrixScenary [cordX] [cordY].type == Types.Forest){
 					counter++;
 				}
-				if (lastQuat == Quaternion.Euler (0, 0, 90) && lastPos != myAllie.transform.position){
+				if (lastQuat == Quaternion.Euler (0, 0, 90) && lastPos != myAlly.transform.position){
 					Instantiate (Line, lastPos, Quaternion.Euler (0, 0, 90));	
 				} else{
 					bool wasSomethingPut = false;
 					Object[] objssss = Lines.FindSceneObjectsOfType (typeof(Lines));
 					foreach (Lines g in objssss){
-						if (g.transform.position.x == transform.position.x - 1 && g.transform.position.y == transform.position.y + 1 && lastPos != myAllie.transform.position){
+						if (g.transform.position.x == transform.position.x - 1 && g.transform.position.y == transform.position.y + 1 && lastPos != myAlly.transform.position){
 							Instantiate (DerArr, lastPos, Quaternion.Euler (0, 0, 0));
 							wasSomethingPut = true;
 							break;
-						} else if (g.transform.position.x == transform.position.x - 1 && g.transform.position.y == transform.position.y - 1 && lastPos != myAllie.transform.position){
+						} else if (g.transform.position.x == transform.position.x - 1 && g.transform.position.y == transform.position.y - 1 && lastPos != myAlly.transform.position){
 							Instantiate (DerAba, lastPos, Quaternion.Euler (0, 0, 0));	
 							wasSomethingPut = true;
 							break;
@@ -1555,12 +1555,12 @@ public class Cursor : MonoBehaviour{
 				lastQuat = Quaternion.Euler (0, 0, 90);
 			}
 
-			if (counter > myAllie.movement){
+			if (counter > myAlly.movement){
 				isCountPlus1 = true;
 			} else{
 				isCountPlus1 = false;
 			}
-			if (transform.position == myAllie.transform.position || isCountPlus1 || wasRecentlyOut){
+			if (transform.position == myAlly.transform.position || isCountPlus1 || wasRecentlyOut){
 
 				AutogeneraciondeCaminos (cordX, cordY);
 				wasRecentlyOut = false;
@@ -1622,22 +1622,22 @@ public class Cursor : MonoBehaviour{
 
 
 			
-			if (counter <= myAllie.movement && !isRectifying){
+			if (counter <= myAlly.movement && !isRectifying){
 				counter++;
 				if (myMap.matrixScenary [cordX] [cordY].type == Types.Forest){
 					counter++;
 				}
-				if (lastQuat == Quaternion.Euler (0, 0, 0) && lastPos != myAllie.transform.position){
+				if (lastQuat == Quaternion.Euler (0, 0, 0) && lastPos != myAlly.transform.position){
 					Instantiate (Line, lastPos, Quaternion.Euler (0, 0, 0));	
 				} else{
 					bool wasSomethingPut = false;
 					Object[] objssss = Lines.FindSceneObjectsOfType (typeof(Lines));
 					foreach (Lines g in objssss){
-						if (g.transform.position.x == transform.position.x - 1 && g.transform.position.y == transform.position.y + 1 && lastPos != myAllie.transform.position){
+						if (g.transform.position.x == transform.position.x - 1 && g.transform.position.y == transform.position.y + 1 && lastPos != myAlly.transform.position){
 							Instantiate (IzAba, lastPos, Quaternion.Euler (0, 0, 0));
 							wasSomethingPut = true;
 							break;
-						} else if (g.transform.position.x == transform.position.x + 1 && g.transform.position.y == transform.position.y + 1 && lastPos != myAllie.transform.position){
+						} else if (g.transform.position.x == transform.position.x + 1 && g.transform.position.y == transform.position.y + 1 && lastPos != myAlly.transform.position){
 							Instantiate (DerAba, lastPos, Quaternion.Euler (0, 0, 0));	
 							wasSomethingPut = true;
 							break;
@@ -1653,12 +1653,12 @@ public class Cursor : MonoBehaviour{
 				lastPos = transform.position;
 				lastQuat = Quaternion.Euler (0, 0, 0);
 			}
-			if (counter > myAllie.movement){
+			if (counter > myAlly.movement){
 				isCountPlus1 = true;
 			} else{
 				isCountPlus1 = false;
 			}
-			if (transform.position == myAllie.transform.position || isCountPlus1 || wasRecentlyOut){
+			if (transform.position == myAlly.transform.position || isCountPlus1 || wasRecentlyOut){
 
 				AutogeneraciondeCaminos (cordX, cordY);
 				wasRecentlyOut = false;
