@@ -1,2 +1,4 @@
 # FireEmblemBlazingSword-
-A project designed to be an identical copy of this game, with the restriction that I have to develop the entire code.
+This project main idea is to show i'm capable of creating most of the logic behind this game using the sprites that can be found here: https://www.spriters-resource.com/game_boy_advance/fireemblemtheblazingblade/
+
+Now the idea is to refactor mostly Cursor script which has more information than it should. Split it into different classes to make it semantically more understandable.
