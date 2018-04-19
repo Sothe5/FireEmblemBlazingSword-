@@ -261,6 +261,36 @@ public class EnemyTurn : MonoBehaviour {
 				i++;
 			}
 			path.RemoveRange (0, i);
+			int x, y;
+			int t = 0;
+			List<int> xFree = new List<int> ();
+			List<int> yFree = new List<int> ();
+			while (myMap.GetValue (path [0].x, path [0].y) == Types.Enemy && t < 2) {
+				xFree.Add (path [0].x);
+				yFree.Add (path [0].y);
+			
+				myMap.matrixScenary [path [0].x] [path [0].y].setType (Types.Ocupaid);
+				myMap.matrixScenary [Mathf.FloorToInt (target.transform.position.x)] [Mathf.FloorToInt (target.transform.position.y)].setType (Types.Free);
+				path.Clear ();
+				myMap.isPathFinding (myEnemyX, myEnemyY, Mathf.FloorToInt (target.transform.position.x), Mathf.FloorToInt (target.transform.position.y), myEnemy.movement, path);
+				myMap.matrixScenary [Mathf.FloorToInt (target.transform.position.x)] [Mathf.FloorToInt (target.transform.position.y)].setType (Types.Ocupaid);
+			
+				i = 0;
+				while (path [i].g > myEnemy.movement) {
+					i++;
+				}
+				path.RemoveRange (0, i);
+				t++;
+			}
+			for (int j = 0; j < xFree.Count; j++) {
+				myMap.matrixScenary [xFree [j]] [yFree [j]].setType (Types.Free);
+			}
+
+//			// si path en la ultima casilla tiene un enemy:
+//			while (myMap.GetValue (path [0].x, path [0].y) == Types.Enemy) {
+//				path.Remove (path [0]);
+//			}
+
 			StartCoroutine (AnimationMovement (path, myEnemy));
 		}
 	}
