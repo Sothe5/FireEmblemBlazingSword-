@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ba6e0f45b75889548be9c39d07f3e084
+timeCreated: 1523271835
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Evil Dead
+  fontNames:
+  - Evil Dead
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

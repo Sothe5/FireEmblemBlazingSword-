@@ -1,0 +1,953 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: VerdanAttack
+  serializedVersion: 6
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_EulerCurves: []
+  m_PositionCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.4
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.45
+        value: {x: -1.24, y: 1.61, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.75
+        value: {x: -1.24, y: 1.61, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.3166667
+        value: {x: -1.24, y: 1.61, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.4166666
+        value: {x: -5.04, y: -0.2, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: AllieAttack/Projectile
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.4
+        value: {x: 0, y: 0, z: 0.000009155275}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.45
+        value: {x: -1.24, y: 1.61, z: 0}
+        inSlope: {x: -8.542857, y: 7.857143, z: 0}
+        outSlope: {x: -8.542857, y: 7.857143, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.75
+        value: {x: -2.99, y: 2.75, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.3166667
+        value: {x: -2.99, y: 2.75, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.4166666
+        value: {x: -5.04, y: -0.2, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: AllieAttack/Projectile1
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0, y: 0, z: 0.000009155275}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.4
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.45
+        value: {x: -1.24, y: 1.61, z: 0}
+        inSlope: {x: -6, y: 0, z: 0}
+        outSlope: {x: -6, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.75
+        value: {x: -2.1, y: 0.36, z: 0.0000015683697}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.3166667
+        value: {x: -2.1, y: 0.36, z: 0.0000015683697}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.4166666
+        value: {x: 0, y: 0, z: 0.000009155275}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: AllieAttack/Projectile2
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0, y: 0, z: 0.000009155275}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.4
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.45
+        value: {x: -1.24, y: 1.61, z: 0}
+        inSlope: {x: -10.6, y: 0, z: 0}
+        outSlope: {x: -10.6, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.75
+        value: {x: -3.71, y: 1.26, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.3166667
+        value: {x: -3.71, y: 1.26, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.4166666
+        value: {x: 0, y: 0, z: 0.000009155275}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: AllieAttack/Projectile3
+  m_ScaleCurves: []
+  m_FloatCurves: []
+  m_PPtrCurves:
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: d4944582fc45b6d438aa40632263e2f8, type: 3}
+    - time: 0.083333336
+      value: {fileID: 21300000, guid: 8343bcb2db5e0c842a64a6095d2fbc95, type: 3}
+    - time: 0.16666667
+      value: {fileID: 21300000, guid: 72b13fc9df4295a4e97f463cc7900838, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: 10da6c13b855d714dbe23feb30360c40, type: 3}
+    - time: 0.33333334
+      value: {fileID: 21300000, guid: f48e4077453975443ab7b0efe0a29a8b, type: 3}
+    - time: 0.41666666
+      value: {fileID: 21300000, guid: f51fb25719d3ed7428e37cde48e23d20, type: 3}
+    - time: 0.5
+      value: {fileID: 21300000, guid: 2d0af3f29e4882d4784ba56438a2a72c, type: 3}
+    - time: 0.5833333
+      value: {fileID: 21300000, guid: 55d565fe975f0aa44903a768c53461c5, type: 3}
+    - time: 0.6666667
+      value: {fileID: 21300000, guid: 58fb3fdafda286447aaaaca620e053a6, type: 3}
+    - time: 0.75
+      value: {fileID: 21300000, guid: 4c69fc55464fc3f45b9bc82d645334d4, type: 3}
+    - time: 0.8333333
+      value: {fileID: 21300000, guid: 25b55139cc2b2bc4081c820f81e0528b, type: 3}
+    - time: 0.9166667
+      value: {fileID: 21300000, guid: d519b0445821c614582a54a5cac6f28e, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: 878337603e9a5f640ba26e6451d2e529, type: 3}
+    - time: 1.0833334
+      value: {fileID: 21300000, guid: 34c79c347f1267a439b8ab2d4e988030, type: 3}
+    - time: 1.1666666
+      value: {fileID: 21300000, guid: ea91f8ed109512946a0278b7e1912e10, type: 3}
+    - time: 1.25
+      value: {fileID: 21300000, guid: 2cbcdc9e45252c348994ff8e448b0d17, type: 3}
+    - time: 1.3333334
+      value: {fileID: 21300000, guid: edee7353c063d0b4ebef9236328412e8, type: 3}
+    - time: 1.4166666
+      value: {fileID: 21300000, guid: f83518e229b73cd4a8b4dcd02d084f68, type: 3}
+    - time: 1.5
+      value: {fileID: 21300000, guid: d4944582fc45b6d438aa40632263e2f8, type: 3}
+    attribute: m_Sprite
+    path: AllieAttack
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 0}
+    - time: 0.5
+      value: {fileID: 21300000, guid: 942e16db6e74d3647858814667c85310, type: 3}
+    - time: 0.5833333
+      value: {fileID: 21300000, guid: 74f577e10237d9a42b55e9b128b1c186, type: 3}
+    - time: 0.75
+      value: {fileID: 21300000, guid: 3deccd8b45dd6444aa9b745d28579a27, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: ac8a2517f8b505342a9154c692ae8909, type: 3}
+    - time: 1.4166666
+      value: {fileID: 0}
+    attribute: m_Sprite
+    path: AllieAttack/Projectile
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 0}
+    - time: 0.5
+      value: {fileID: 21300000, guid: 942e16db6e74d3647858814667c85310, type: 3}
+    - time: 0.5833333
+      value: {fileID: 21300000, guid: 74f577e10237d9a42b55e9b128b1c186, type: 3}
+    - time: 0.75
+      value: {fileID: 21300000, guid: 3deccd8b45dd6444aa9b745d28579a27, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: ac8a2517f8b505342a9154c692ae8909, type: 3}
+    - time: 1.4166666
+      value: {fileID: 0}
+    attribute: m_Sprite
+    path: AllieAttack/Projectile1
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 0}
+    - time: 0.5
+      value: {fileID: 21300000, guid: 942e16db6e74d3647858814667c85310, type: 3}
+    - time: 0.5833333
+      value: {fileID: 21300000, guid: 74f577e10237d9a42b55e9b128b1c186, type: 3}
+    - time: 0.75
+      value: {fileID: 21300000, guid: 3deccd8b45dd6444aa9b745d28579a27, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: ac8a2517f8b505342a9154c692ae8909, type: 3}
+    - time: 1.4166666
+      value: {fileID: 0}
+    attribute: m_Sprite
+    path: AllieAttack/Projectile2
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 0}
+    - time: 0.5
+      value: {fileID: 21300000, guid: 942e16db6e74d3647858814667c85310, type: 3}
+    - time: 0.5833333
+      value: {fileID: 21300000, guid: 74f577e10237d9a42b55e9b128b1c186, type: 3}
+    - time: 0.75
+      value: {fileID: 21300000, guid: 3deccd8b45dd6444aa9b745d28579a27, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: ac8a2517f8b505342a9154c692ae8909, type: 3}
+    - time: 1.4166666
+      value: {fileID: 0}
+    attribute: m_Sprite
+    path: AllieAttack/Projectile3
+    classID: 212
+    script: {fileID: 0}
+  m_SampleRate: 60
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings:
+    - serializedVersion: 2
+      path: 1213553750
+      attribute: 1
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 27020842
+      attribute: 1
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2559909776
+      attribute: 1
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 4019334918
+      attribute: 1
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3930697969
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 1213553750
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 27020842
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 2559909776
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 4019334918
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    pptrCurveMapping:
+    - {fileID: 21300000, guid: d4944582fc45b6d438aa40632263e2f8, type: 3}
+    - {fileID: 21300000, guid: 8343bcb2db5e0c842a64a6095d2fbc95, type: 3}
+    - {fileID: 21300000, guid: 72b13fc9df4295a4e97f463cc7900838, type: 3}
+    - {fileID: 21300000, guid: 10da6c13b855d714dbe23feb30360c40, type: 3}
+    - {fileID: 21300000, guid: f48e4077453975443ab7b0efe0a29a8b, type: 3}
+    - {fileID: 21300000, guid: f51fb25719d3ed7428e37cde48e23d20, type: 3}
+    - {fileID: 21300000, guid: 2d0af3f29e4882d4784ba56438a2a72c, type: 3}
+    - {fileID: 21300000, guid: 55d565fe975f0aa44903a768c53461c5, type: 3}
+    - {fileID: 21300000, guid: 58fb3fdafda286447aaaaca620e053a6, type: 3}
+    - {fileID: 21300000, guid: 4c69fc55464fc3f45b9bc82d645334d4, type: 3}
+    - {fileID: 21300000, guid: 25b55139cc2b2bc4081c820f81e0528b, type: 3}
+    - {fileID: 21300000, guid: d519b0445821c614582a54a5cac6f28e, type: 3}
+    - {fileID: 21300000, guid: 878337603e9a5f640ba26e6451d2e529, type: 3}
+    - {fileID: 21300000, guid: 34c79c347f1267a439b8ab2d4e988030, type: 3}
+    - {fileID: 21300000, guid: ea91f8ed109512946a0278b7e1912e10, type: 3}
+    - {fileID: 21300000, guid: 2cbcdc9e45252c348994ff8e448b0d17, type: 3}
+    - {fileID: 21300000, guid: edee7353c063d0b4ebef9236328412e8, type: 3}
+    - {fileID: 21300000, guid: f83518e229b73cd4a8b4dcd02d084f68, type: 3}
+    - {fileID: 21300000, guid: d4944582fc45b6d438aa40632263e2f8, type: 3}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: 942e16db6e74d3647858814667c85310, type: 3}
+    - {fileID: 21300000, guid: 74f577e10237d9a42b55e9b128b1c186, type: 3}
+    - {fileID: 21300000, guid: 3deccd8b45dd6444aa9b745d28579a27, type: 3}
+    - {fileID: 21300000, guid: ac8a2517f8b505342a9154c692ae8909, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: 942e16db6e74d3647858814667c85310, type: 3}
+    - {fileID: 21300000, guid: 74f577e10237d9a42b55e9b128b1c186, type: 3}
+    - {fileID: 21300000, guid: 3deccd8b45dd6444aa9b745d28579a27, type: 3}
+    - {fileID: 21300000, guid: ac8a2517f8b505342a9154c692ae8909, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: 942e16db6e74d3647858814667c85310, type: 3}
+    - {fileID: 21300000, guid: 74f577e10237d9a42b55e9b128b1c186, type: 3}
+    - {fileID: 21300000, guid: 3deccd8b45dd6444aa9b745d28579a27, type: 3}
+    - {fileID: 21300000, guid: ac8a2517f8b505342a9154c692ae8909, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: 942e16db6e74d3647858814667c85310, type: 3}
+    - {fileID: 21300000, guid: 74f577e10237d9a42b55e9b128b1c186, type: 3}
+    - {fileID: 21300000, guid: 3deccd8b45dd6444aa9b745d28579a27, type: 3}
+    - {fileID: 21300000, guid: ac8a2517f8b505342a9154c692ae8909, type: 3}
+    - {fileID: 0}
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_AdditiveReferencePoseClip: {fileID: 0}
+    m_AdditiveReferencePoseTime: 0
+    m_StartTime: 0
+    m_StopTime: 1.5166667
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_HasAdditiveReferencePose: 0
+    m_LoopTime: 0
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.4
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.45
+        value: -1.24
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.75
+        value: -1.24
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.3166667
+        value: -1.24
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.4166666
+        value: -5.04
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: AllieAttack/Projectile
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.4
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.45
+        value: 1.61
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.75
+        value: 1.61
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.3166667
+        value: 1.61
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.4166666
+        value: -0.2
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: AllieAttack/Projectile
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.4
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.45
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.75
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.3166667
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.4166666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: AllieAttack/Projectile
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.4
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.45
+        value: -1.24
+        inSlope: -8.542857
+        outSlope: -8.542857
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.75
+        value: -2.99
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.3166667
+        value: -2.99
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.4166666
+        value: -5.04
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: AllieAttack/Projectile1
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.4
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.45
+        value: 1.61
+        inSlope: 7.857143
+        outSlope: 7.857143
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.75
+        value: 2.75
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.3166667
+        value: 2.75
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.4166666
+        value: -0.2
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: AllieAttack/Projectile1
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.4
+        value: 0.000009155275
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.45
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.75
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.3166667
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.4166666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: AllieAttack/Projectile1
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.4
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.45
+        value: -1.24
+        inSlope: -6
+        outSlope: -6
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.75
+        value: -2.1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.3166667
+        value: -2.1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.4166666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: AllieAttack/Projectile2
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.4
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.45
+        value: 1.61
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.75
+        value: 0.36
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.3166667
+        value: 0.36
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.4166666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: AllieAttack/Projectile2
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0.000009155275
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.4
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.45
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.75
+        value: 0.0000015683697
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.3166667
+        value: 0.0000015683697
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.4166666
+        value: 0.000009155275
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: AllieAttack/Projectile2
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.4
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.45
+        value: -1.24
+        inSlope: -10.6
+        outSlope: -10.6
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.75
+        value: -3.71
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.3166667
+        value: -3.71
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.4166666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: AllieAttack/Projectile3
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.4
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.45
+        value: 1.61
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.75
+        value: 1.26
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.3166667
+        value: 1.26
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.4166666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: AllieAttack/Projectile3
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0.000009155275
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.4
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.45
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.75
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.3166667
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.4166666
+        value: 0.000009155275
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: AllieAttack/Projectile3
+    classID: 4
+    script: {fileID: 0}
+  m_EulerEditorCurves: []
+  m_HasGenericRootTransform: 0
+  m_HasMotionFloatCurves: 0
+  m_GenerateMotionCurves: 0
+  m_Events:
+  - time: 1.35
+    functionName: ActualizarVidaEnemy
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
