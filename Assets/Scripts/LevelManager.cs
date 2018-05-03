@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
-{
+public class LevelManager : MonoBehaviour {
 
-	public void Load (string s)
-	{
+	void Update () {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Application.Quit ();
+		}
+	}
+
+	public void Load (string s) {
 		SceneManager.LoadScene (s);
 	}
 
