@@ -3,7 +3,7 @@ This project **main idea** is to show i'm capable of creating most of the logic 
 
 Now the idea is to refactor mostly Cursor script which has more information than it should. Split it into different classes to make it semantically more understandable.
 
-**To install** or start working with it just open the whole project with Unity. 
+**To install** or start working with it just open the whole project with Unity. To execute it with out Unity get the FireEmblemBuild.zip that is uploaded in this repository and execute the .exe
 
 **Controls** **WASD** for move everything, **Enter** for accepting and **Right Shift** for decline.
 
