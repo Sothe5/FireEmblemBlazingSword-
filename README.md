@@ -7,4 +7,6 @@ Now the idea is to refactor mostly Cursor script which has more information than
 
 **Controls** **WASD** for move everything, **Enter** for accepting and **Right Shift** for decline.
 
+**Resolution** it should be 3:2 as it was desing but unity seems to not allow builds show up in this resolution so use 640x400.
+
 This project has been done with the **Unity version** 2017.2.0f3 although it shouldn't matter to much if you open it with other versions.
